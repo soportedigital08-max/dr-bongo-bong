@@ -1,0 +1,39 @@
+# Dependencias
+node_modules/
+
+# Builds
+.next/
+out/
+
+# Entornos (CONTIENEN SECRETOS — NO SUBIR)
+.env
+.env.local
+.env.*.local
+
+# DB local
+prisma/dev.db
+prisma/dev.db-journal
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / SO
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Subidas temporales
+*.zip
+
+# Migración WP vieja (no es código fuente)
+public_html_export/
+
+# server.js de raíz (es el entrypoint del deploy, no del repo dev)
+/server.js
+
+# SQL de migración
+*.sql
+
+# Next standalone build de producción (se genera, no se versiona)
+.next/standalone/server.js

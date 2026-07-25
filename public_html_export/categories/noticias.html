@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Noticias — Dr Bongo Bong</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#0d0d0d;color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}.accent-line{height:3px;background:linear-gradient(90deg,#c41e3a,#e8253d);background-size:200% 100%;animation:gx 6s ease infinite}@keyframes gx{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}.glass{background:rgba(13,13,13,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}header{position:fixed;top:0;left:0;right:0;z-index:50}.nav{max-width:80rem;margin:0 auto;padding:0 1rem;height:4rem;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:.5rem;font-family:Space Grotesk,Outfit,sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.02em}.menu{display:flex;gap:2rem;font-size:.875rem;font-weight:500;color:#a3a3a3}.menu a{color:#a3a3a3;text-decoration:none}.menu a:hover{color:#fff}.live{display:inline-flex;align-items:center;gap:.5rem;background:#c41e3a;color:#fff;padding:.5rem 1rem;border-radius:9999px;font-weight:700;font-size:.875rem;text-decoration:none;box-shadow:0 0 14px rgba(232,37,61,.6);animation:lb 2.4s ease-in-out infinite}@keyframes lb{0%,100%{box-shadow:0 0 10px rgba(232,37,61,.45)}50%{box-shadow:0 0 22px rgba(232,37,61,.8)}}.dot{width:.5rem;height:.5rem;border-radius:9999px;background:#fff;animation:dp 1.6s ease-in-out infinite}@keyframes dp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}main{min-height:100vh;padding-top:4rem}.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden}.aura{position:absolute;inset:0;background:radial-gradient(600px circle at 50% 40%,rgba(232,37,61,.18),transparent 60%);animation:ad 14s ease-in-out infinite alternate}@keyframes ad{0%{background-position:30% 30%}100%{background-position:70% 60%}}.hero-bg{position:absolute;inset:0;background:radial-gradient(120% 120% at 70% 10%,#3a0a14 0%,#160308 45%,#0d0d0d 100%)}.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0d0d0d,rgba(13,13,13,.6),transparent)}.hero-in{position:relative;z-index:20;width:100%;max-width:80rem;margin:0 auto;padding:0 1rem 4rem}.kicker{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#e8253d;margin-bottom:1.25rem}.kicker span{width:2rem;height:1px;background:#e8253d}h1{font-family:Space Grotesk,Outfit,sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);line-height:.95;margin:0 0 1.5rem;letter-spacing:-.02em}h1 em{color:#e8253d;font-style:normal}.lead{font-size:1.125rem;color:#a3a3a3;max-width:42rem;margin:0 0 2rem}.cta{display:flex;gap:1rem;flex-wrap:wrap}.btn{background:#c41e3a;color:#fff;padding:.875rem 2rem;border-radius:9999px;font-weight:700;text-decoration:none;display:inline-block}.btn-ghost{border:1px solid rgba(255,255,255,.2);color:#fff;padding:.875rem 2rem;border-radius:9999px;font-weight:700;text-decoration:none;display:inline-block}.meta{margin-top:1.5rem;display:flex;gap:.75rem;align-items:center;font-size:.875rem;color:#a3a3a3}.meta b{color:#fff}.ticker{background:rgba(196,30,58,.1);border-top:1px solid rgba(232,37,61,.18);border-bottom:1px solid rgba(232,37,61,.18);padding:.75rem 0;overflow:hidden}.track{display:inline-flex;white-space:nowrap;animation:tk 30s linear infinite}.track a{color:rgba(255,255,255,.8);font-size:.875rem;font-weight:500;padding:0 1.5rem;text-decoration:none}@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}.sec{padding:5rem 0}h2.title{font-family:Space Grotesk,Outfit,sans-serif;font-weight:800;font-size:clamp(1.75rem,3vw,2.5rem);text-align:center;margin:0 0 3rem;letter-spacing:-.02em}h2.title em{color:#e8253d;font-style:normal}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.gridlg{display:grid;grid-template-columns:1fr 2fr;gap:2rem}@media(max-width:900px){.grid3,.gridlg{grid-template-columns:1fr}}.card{display:block;background:#141414;border:1px solid rgba(255,255,255,.05);border-radius:1rem;overflow:hidden;text-decoration:none;color:#fff;transition:transform .45s,box-shadow .45s,border-color .45s}.card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(0,0,0,.55);border-color:rgba(232,37,61,.4)}.cover{height:12rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:rgba(255,255,255,.2)}.cover b{font-family:Space Grotesk,Outfit,sans-serif;font-weight:800;font-size:3rem}.cover span{font-size:.625rem;text-transform:uppercase;letter-spacing:.3em;font-weight:500}.tag{position:absolute;top:1rem;left:1rem;background:#c41e3a;color:#fff;font-size:.75rem;font-weight:700;padding:.25rem .75rem;border-radius:9999px}.card .body{padding:1.5rem}.card h3{font-family:Space Grotesk,Outfit,sans-serif;font-weight:700;font-size:1.25rem;margin:0 0 .75rem;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.card:hover h3{color:#e8253d}.card p{color:#a3a3a3;font-size:.875rem;margin:0 0 1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.card .m{display:flex;justify-content:space-between;font-size:.75rem;color:#6b6b6b}footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:4rem 1rem}.foot{max-width:80rem;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;font-size:.875rem;color:#a3a3a3}@media(max-width:900px){.foot{grid-template-columns:1fr}}.foot h4{color:#fff;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 1rem}.foot a{color:#a3a3a3;text-decoration:none;display:block;margin-bottom:.5rem}.foot a:hover{color:#fff}.news{display:flex;gap:.5rem}.news input{flex:1;background:#141414;border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:.5rem 1rem;color:#fff}.news button{background:#c41e3a;color:#fff;border:0;border-radius:9999px;padding:0 1rem;font-weight:700;cursor:pointer}</style></head><body>
+<div class="accent-line"></div>
+<header class="glass"><div class="nav"><a href="/" class="brand">BONGO BONG</a><nav class="menu"><a href="/">Inicio</a><a href="/posts">Artículos</a><a href="/categories">Categorías</a><a href="/radio">Radio</a></nav><a href="/radio" class="live"><span class="dot"></span>EN VIVO</a></div></header>
+<main><section class="sec wrap"><h2 class="title">Noticias</h2><div class="grid3"><a class="card" href="/posts/chowy-fernandez-dio-la-primicia-en-vorterix-barro-anuncia-nuevo-show-y-el-se-consagra-en-niceto">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Chowy Fernández dio la primicia en Vorterix: BARRO anuncia nuevo show y él se consagra en Niceto</h3><p> El guitarrista detalló en el programa nocturno de Vorterix su hito personal en Niceto, anticipó el reencuentro de BARRO y ejecutó dos temas que confirmaron por</p><div class="m"><span>drbongobong</span><span>21 de octubre de 2025</span></div></div>
+    </a><a class="card" href="/posts/alika-alza-la-voz-por-que-le-siguen-dando-espacio-a-un-golpeador-y-abusador-de-mujeres-como-es-fidel-nadal">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Alika alza la voz: “¿Por qué le siguen dando espacio a un golpeador y abusador de mujeres como es Fidel Nadal?”</h3><p> A las 7:33 h de la tercera jornada de Expo Cannabis, Alika dejó una marca indeleble en el escenario: con voz firme y mirada encendida, denunció las violencias </p><div class="m"><span>drbongobong</span><span>21 de octubre de 2025</span></div></div>
+    </a><a class="card" href="/posts/rolf-splan-y-los-bredda-la-escena-local-bajo-el-pulso-del-rock">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Rolf, Splan y Los Bredda: la escena local bajo el pulso del rock</h3><p> Olavarría vivió un fin de semana donde la música local tomó protagonismo. Dr. Bongo Bong estuvo presente cubriendo los shows de Splan, Los Bredda y Rolf, tres </p><div class="m"><span>drbongobong</span><span>7 de octubre de 2025</span></div></div>
+    </a><a class="card" href="/posts/patada-de-elefante-el-regreso-del-rock-paquidermo-con-fuerza-y-memoria">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Patada de Elefante: el regreso del rock paquidermo con fuerza y memoria</h3><p> El estilo definitorio de Patada de Elefante se ha llamado “rock paquidermo”: pasajes pesados, guitarras que golpean, armonías complejas, letras que no rehúyen </p><div class="m"><span>drbongobong</span><span>3 de octubre de 2025</span></div></div>
+    </a><a class="card" href="/posts/un-riff-una-amistad-asi-nacio-rolf-asi-resurgen">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Un riff, una amistad: así nació Rolf, así resurgen</h3><p> No hay glorias de estadios gigantes ni aplausos previos al sonido. Rolf nace de algo más sencillo: dos amigos, una guitarra, una batería, ganas de zapar. Lilo </p><div class="m"><span>drbongobong</span><span>30 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/soda-stereo-anuncia-ecos-fecha-confirmada-para-su-regreso-con-cerati-virtual">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Soda Stereo anuncia “Ecos”: fecha confirmada para su regreso con Cerati virtual</h3><p> Después de semanas de rumores, señales criptográficas y cuentas regresivas, Soda Stereo rompió el silencio: el espectáculo llamado Soda Stereo Ecos se llevará </p><div class="m"><span>drbongobong</span><span>29 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/soda-stereo-reunion-real-o-espejismo-musical">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Soda Stereo: ¿Reunión real o espejismo musical?</h3><p> Soda Stereo es mito, marca, banda imprescindible en la historia del rock en español. Desde su separación en 1997 y luego con la muerte de Gustavo Cerati en 201</p><div class="m"><span>drbongobong</span><span>26 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/fito-paez-brillo-en-tiny-desk-clasicos-estreno-y-magia-intima-en-cinco-canciones">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Fito Páez brilló en Tiny Desk: clásicos, estreno y magia íntima en cinco canciones</h3><p> Tiny Desk, para quienes no lo conocen, es ese formato delicado donde el artista se enfrenta al silencio del auditorio virtual, sin artificios, sin enormes pant</p><div class="m"><span>drbongobong</span><span>15 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/iggy-pop-en-buenos-aires-una-descarga-electrica-gaspar-benegas-y-camiseta-argentina-en-el-show-del-ano">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Iggy Pop en Buenos Aires: una descarga eléctrica, Gaspar Benegas y camiseta argentina en el show del año</h3><p> El viernes 12 de septiembre Iggy Pop regresó a Buenos Aires para demostrar que algunas leyendas no envejecen, sino que mutan con intensidad. En un Movistar Are</p><div class="m"><span>drbongobong</span><span>13 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/milo-j-hara-historia-sera-el-artista-mas-joven-en-tocar-en-velez">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Milo J hará historia: será el artista más joven en tocar en Vélez</h3><p> Con la energía de quien no conoce el término “imposible”, Milo J anunció una fecha que quedará marcada en los libros del rock urbano argentino. El 18 de diciem</p><div class="m"><span>drbongobong</span><span>12 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/gorillaz-vuelve-con-the-mountain-bizarrap-y-trueno-entre-los-invitados-sorpresa">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Gorillaz vuelve con “The Mountain”: Bizarrap y Trueno entre los invitados sorpresa</h3><p> Gorillaz regresa, otra vez, cruzando géneros, geografías y generaciones. The Mountain será su nuevo álbum, lanzado en marzo de 2026 mediante su sello propio KO</p><div class="m"><span>drbongobong</span><span>12 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/leyendas-del-rock-se-unen-steven-tyler-joe-perry-yungblud-y-nuno-bettencourt-rinden-tributo-a-ozzy">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Leyendas del rock se unen: Steven Tyler, Joe Perry, Yungblud y Nuno Bettencourt rinden tributo a Ozzy</h3><p> El domingo 7 de septiembre, durante la ceremonia de los MTV Video Music Awards desde el UBS Arena, una alineación de figuras del rock se reunió para rendir hom</p><div class="m"><span>drbongobong</span><span>9 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/quilmes-rock-22-anos-de-historia-en-un-documental-imperdible">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Quilmes Rock: 22 años de historia en un documental imperdible</h3><p> Después de 22 años escribiendo capítulos inolvidables en la historia de la música argentina, el Quilmes Rock vuelve a escena con un regalo para la memoria cole</p><div class="m"><span>drbongobong</span><span>9 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/redondos-en-foco-dos-documentales-que-desentierran-leyendas">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Redondos en foco: dos documentales que desentierran leyendas</h3><p> [et_pb_section admin_label=&quot;section&quot;] [et_pb_row admin_label=&quot;row&quot;] [et_pb_column type=&quot;4_4&quot;][et_pb_text admin_label=&quot;Text&quot;] El sábado 24 de mayo de 2025, el C</p><div class="m"><span>drbongobong</span><span>6 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/unidos-a-su-manera-charly-garcia-y-sting-preparan-colaboracion-historica">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Unidos a su manera: Charly García y Sting preparan colaboración histórica</h3><p> Una frase críptica y emotiva, un reel compartido y una mirada que retumba: “I’m doing it my way”. Con ese simple mensaje, Charly García y Sting confirmaron lo </p><div class="m"><span>drbongobong</span><span>5 de septiembre de 2025</span></div></div>
+    </a><a class="card" href="/posts/ca7riel-y-paco-amoroso-el-movistar-arena-vuelo-y-musica-al-extremo">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Ca7riel y Paco Amoroso: El Movistar Arena, Vuelo y Música al Extremo</h3><p> El show que definió una era: BAÑO MARÍA en el Movistar Arena El 16 de agosto de 2024, Ca7riel y Paco Amoroso transformaron el Movistar Arena en un universo sur</p><div class="m"><span>drbongobong</span><span>13 de diciembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/division-palermo-la-serie-argentina-que-brillo-en-los-emmy-internacionales">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>División Palermo: La Serie Argentina que Brilló en los Emmy Internacionales</h3><p> El pasado 26 de noviembre de 2024, la serie argentina División Palermo alcanzó un hito histórico al ganar el premio a la Mejor Comedia en los prestigiosos Emmy</p><div class="m"><span>drbongobong</span><span>6 de diciembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/pasaje-ricardo-iorio-moreno-honra-al-icono-del-heavy-metal-argentino">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Pasaje Ricardo Iorio: Moreno Honra al Ícono del Heavy Metal Argentino</h3><p> El legado de Ricardo Iorio, figura emblemática del heavy metal argentino, sigue vivo en la memoria de sus seguidores. A poco más de un año de su fallecimiento,</p><div class="m"><span>drbongobong</span><span>6 de diciembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/spinetta-y-las-bandas-eternas-una-noche-para-la-historia">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Spinetta y Las Bandas Eternas: Una noche para la historia</h3><p> El 4 de diciembre de 2009 marcó un hito imborrable en la historia del rock argentino. Luis Alberto Spinetta , el genio detrás de múltiples capítulos fundamenta</p><div class="m"><span>drbongobong</span><span>6 de diciembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/ca7riel-y-paco-amoroso-tiny-desk-una-caida-epica-y-su-innovador-album-bano-maria">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Ca7riel y Paco Amoroso: Tiny Desk, una caída épica y su innovador álbum Baño María</h3><p> Tiny Desk Concert: Un hito para la música argentina El Tiny Desk Concert , grabado en el marco del &quot;Mes de la Herencia Hispana&quot; en Washington D.C., permitió ve</p><div class="m"><span>drbongobong</span><span>22 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/adios-a-willy-quiroga-el-pionero-del-rock-nacional-que-marco-generaciones">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Adiós a Willy Quiroga: El Pionero del Rock Nacional que Marcó Generaciones</h3><p> El mundo de la música argentina está de luto tras la confirmación del fallecimiento de Willy Quiroga, una de las figuras más emblemáticas del rock nacional y m</p><div class="m"><span>drbongobong</span><span>21 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/trailer-de-beatles-64-revela-la-esencia-de-la-beatlemania">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Trailer de &quot;Beatles '64&quot; revela la esencia de la Beatlemania</h3><p> 2nd February 1964: The Beatles, in New York. (Photo by J. Wilds/Keystone/Getty Images) Beatles '64 promete llevar a los espectadores de regreso a un tiempo don</p><div class="m"><span>drbongobong</span><span>19 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/el-mundo-limon-despliega-su-ep-bass-con-malosetti-bronca-y-williams-como-invitados-de-honor">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>El Mundo Limón Despliega su EP &quot;BASS&quot; con Malosetti, Bronca y Williams como Invitados de Honor</h3><p>[et_pb_section admin_label=&quot;section&quot;] [et_pb_row admin_label=&quot;row&quot;] [et_pb_column type=&quot;4_4&quot;][et_pb_text admin_label=&quot;Text&quot;] El Mundo Limón se prepara para una </p><div class="m"><span>drbongobong</span><span>13 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/ya-disponible-pre-venta-de-los-vinilos-clasicos-gulp-y-oktubre-de-patricio-rey-y-sus-redonditos-de-ricota">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Ya Disponible: Pre-venta de los Vinilos Clásicos 'Gulp' y 'Oktubre' de Patricio Rey y sus Redonditos de Ricota</h3><p> El sello discográfico de Patricio Rey y Sus Redonditos de Ricota, ha anunciado la re-edición en vinilo de los legendarios álbumes &quot;Gulp&quot; y &quot;Oktubre&quot; . Ambos di</p><div class="m"><span>drbongobong</span><span>12 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/dillom-triunfo-en-los-mtv-europe-music-awards-2024">
+      <div class="cover" style="background:linear-gradient(to bottom right,#0a3a2a,#061f16)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Dillom triunfó en los MTV Europe Music Awards 2024</h3><p> Dillom, cuyo nombre real es Dylan León Masa, ha logrado un notable ascenso en la música urbana, y su reconocimiento en los MTV Europe Music Awards es un testim</p><div class="m"><span>drbongobong</span><span>11 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/asspera-llega-a-olavarria-una-noche-de-metal-sin-limites">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Asspera llega a Olavarría: Una noche de metal sin límites</h3><p> Asspera, conocida por su potente sonido y letras provocativas, ha ganado un lugar destacado en la escena del metal argentino. Con una trayectoria que abarca má</p><div class="m"><span>drbongobong</span><span>6 de noviembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/jon-bon-jovi-interviene-para-salvar-a-una-mujer-en-un-puente-de-nashville">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Jon Bon Jovi interviene para salvar a una mujer en un puente de Nashville</h3><p> El martes 10 de septiembre, el cantante Jon Bon Jovi se encontraba en el Puente Peatonal John Seigenthaler , en Nashville, para la grabación de su nuevo video </p><div class="m"><span>drbongobong</span><span>12 de septiembre de 2024</span></div></div>
+    </a><a class="card" href="/posts/charly-garcia-anuncia-el-lanzamiento-de-la-logica-del-escorpion-para-septiembre">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Charly García Anuncia el Lanzamiento de &quot;La Lógica del Escorpión&quot; para Septiembre</h3><p> El legendario músico argentino Charly García ha anunciado el lanzamiento de su próximo álbum, titulado &quot;La Lógica del Escorpión&quot;, que verá la luz en septiembre</p><div class="m"><span>drbongobong</span><span>5 de agosto de 2024</span></div></div>
+    </a><a class="card" href="/posts/aerosmith-se-despide-de-los-escenarios-el-adios-de-steven-tyler-a-los-conciertos-en-vivo">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Aerosmith se despide de los escenarios: El adiós de Steven Tyler a los conciertos en vivo</h3><p> Después de más de cincuenta años marcando la historia del rock, Aerosmith, liderado por Steven Tyler, ha anunciado el fin de sus presentaciones en vivo. El anu</p><div class="m"><span>drbongobong</span><span>5 de agosto de 2024</span></div></div>
+    </a><a class="card" href="/posts/feliz-ipa-day">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>¡Feliz IPA Day!</h3><p> ¿Qué es, cuándo y por qué se celebra el IPA day? ¡Hola espumeros! Hoy, como cada primer jueves de agosto, se celebra el día mundial de las IPAs. Pero... ¿Qué s</p><div class="m"><span>aledanke</span><span>31 de julio de 2024</span></div></div>
+    </a><a class="card" href="/posts/charly-alberti-y-zeta-bosio-publicaran-un-tema-inedito-de-soda-stereo-a-40-anos-de-su-album-debut">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Charly Alberti y Zeta Bosio publicarán un tema inédito de Soda Stereo a 40 años de su álbum debut</h3><p> El 27 de agosto de 1984, Soda Stereo lanzó su álbum debut homónimo, produciendo éxitos que definirían el rock argentino. Casi 40 años después, Charly Alberti y</p><div class="m"><span>drbongobong</span><span>22 de julio de 2024</span></div></div>
+    </a><a class="card" href="/posts/campana-solidaria-para-la-repatriacion-de-mateo-acuna-caputo">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Campaña Solidaria para la Repatriación de Mateo Acuña Caputo</h3><p> La comunidad de Olavarría está profundamente afectada por la reciente pérdida de Mateo Acuña Caputo, quien falleció en Perú. Mateo fue fundador de la banda Kru</p><div class="m"><span>drbongobong</span><span>9 de julio de 2024</span></div></div>
+    </a><a class="card" href="/posts/concierto-benefico-eduardo-timpanaro-presenta-confluencia-en-olavarria">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Concierto Benéfico: Eduardo Timpanaro Presenta &quot;Confluencia&quot; en Olavarría</h3><p> El próximo sábado 29 de junio, a las 20:00 hs, el Teatro Municipal de Olavarría será el escenario de un evento musical único: Eduardo Timpanaro presenta &quot;Confl</p><div class="m"><span>drbongobong</span><span>28 de junio de 2024</span></div></div>
+    </a><a class="card" href="/posts/apocalyptica-lanza-version-de-one-con-james-hetfield-y-robert-trujillo-de-metallica">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Apocalyptica Lanza Versión de &quot;One&quot; con James Hetfield y Robert Trujillo de Metallica</h3><p> La banda de rock finlandesa, Apocalyptica, ha sorprendido a sus fanáticos al anunciar el lanzamiento de su esperada versión del clásico &quot;One&quot; de Metallica. Est</p><div class="m"><span>drbongobong</span><span>19 de mayo de 2024</span></div></div>
+    </a><a class="card" href="/posts/gran-sorpresa-de-babasonicos-lanzan-documental-el-abstracto-de-la-musica">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Gran sorpresa de Babasónicos: Lanzan documental &quot;El abstracto de la música&quot;</h3><p> La icónica banda argentina, Babasónicos, sorprendió a sus seguidores al lanzar en su canal oficial de YouTube el documental &quot;El abstracto de la música&quot;. Dirigi</p><div class="m"><span>drbongobong</span><span>13 de mayo de 2024</span></div></div>
+    </a><a class="card" href="/posts/jornada-solidaria-por-juli-un-encuentro-de-rock-y-arte-para-ayudar-a-julieta-dodero">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Jornada solidaria por Juli: un encuentro de rock y arte para ayudar a Julieta Dodero</h3><p> Este sábado 11 de mayo de 2024, la Escuela Agraria y Artes Visuales, ubicada en Au L. Fortabat 7200, será el escenario de una jornada solidaria destinada a ayu</p><div class="m"><span>drbongobong</span><span>11 de mayo de 2024</span></div></div>
+    </a><a class="card" href="/posts/amy-lee-de-evanescence-que-dice-sobre-rumores-de-unirse-a-linkin-park-como-cantante">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Amy Lee de Evanescence ¿Qué dice sobre rumores de unirse a Linkin Park como cantante?</h3><p> En una entrevista con la emisora canadiense iHeart Radio, Amy Lee abordó los rumores que circulan sobre su posible incorporación a Linkin Park como nueva vocal</p><div class="m"><span>drbongobong</span><span>24 de abril de 2024</span></div></div>
+    </a><a class="card" href="/posts/rock-solidario-en-sierras-bayas-un-festival-para-ayudar-a-julieta-dodero">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Rock Solidario en Sierras Bayas: Un Festival para Ayudar a Julieta Dodero</h3><p> El sábado 6 de abril, Sierras Bayas se vestirá de rock y solidaridad con la realización de un festival benéfico en apoyo a Julieta Dodero, una adolescente de l</p><div class="m"><span>drbongobong</span><span>5 de abril de 2024</span></div></div>
+    </a><a class="card" href="/posts/megadeth-llega-a-buenos-aires-conciertos-en-streaming">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Megadeth llega a Buenos Aires: Conciertos en streaming</h3><p> Megadeth, la icónica banda de metal, regresa a Buenos Aires como parte de su gira &quot;Crush The World Tour&quot;, con tres fechas en el Movistar Arena los días 13, 14 </p><div class="m"><span>drbongobong</span><span>4 de abril de 2024</span></div></div>
+    </a><a class="card" href="/posts/murio-fer-pita-lider-de-la-banda-de-rock-heroicos-sobrevivientes">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Murió Fer Pita, líder de la banda de rock &quot;Heroicos Sobrevivientes&quot;</h3><p> El mundo del rock nacional está de luto tras la pérdida de Fer Pita, líder y cofundador de la icónica banda &quot;Heroicos Sobrevivientes&quot;. A los 69 años, Pita sucu</p><div class="m"><span>drbongobong</span><span>4 de abril de 2024</span></div></div>
+    </a><a class="card" href="/posts/king-of-bongo-de-mano-negra-album-que-celebra-33-anos-con-un-legado-musical-inolvidable">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>&quot;King of Bongo&quot; de Mano Negra, álbum que celebra 33 años con un legado musical inolvidable</h3><p> El 1 de abril de 1991, Mano Negra lanzó su tercer álbum de estudio, &quot;King of Bongo&quot;, una obra que celebra 33 años de su estreno. Producido por la discográfica </p><div class="m"><span>drbongobong</span><span>3 de abril de 2024</span></div></div>
+    </a><a class="card" href="/posts/brimstone-forjando-su-propio-camino-en-el-mundo-de-la-musica">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Brimstone: Forjando su Propio Camino en el Mundo de la Música</h3><p> Catedral de La Plata, día de grabación de la live session en Nakao Studio La historia de Brimstone, de Olavarría, es la de un grupo de amigos que se unieron po</p><div class="m"><span>drbongobong</span><span>3 de abril de 2024</span></div></div>
+    </a><a class="card" href="/posts/anderson-paak-y-schoolboy-interpretan-am-i-wrong-en-paak-house-radio">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Anderson .Paak y ScHoolboy interpretan &quot;Am I Wrong&quot; en .Paak House Radio</h3><p> En el Episodio 3 de .Paak House Radio en Apple Music 1, ScHoolboy Q y Amber Rose se unieron a Anderson .Paak para una experiencia musical cautivadora. ScHoolbo</p><div class="m"><span>drbongobong</span><span>22 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/timmy-trumpet-rinde-homenaje-a-los-redonditos-de-ricota-con-una-version-de-jijiji">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Timmy Trumpet rinde homenaje a Los Redonditos de Ricota con una versión de 'Jijiji'</h3><p> Anoche, en un emocionante tributo a la legendaria banda argentina Los Redonditos de Ricota, el renombrado DJ y productor Timmy Trumpet cautivó al público con u</p><div class="m"><span>drbongobong</span><span>18 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/justin-timberlake-regresa-al-tiny-desk-concert">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Justin Timberlake regresa al Tiny Desk Concert</h3><p> El cantante y actor Justin Timberlake hizo su esperado regreso al Tiny Desk Concert de NPR con una actuación impresionante. El concierto, que se lanzó hace tre</p><div class="m"><span>drbongobong</span><span>18 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/nuevo-video-musical-de-deep-purple-smoke-on-the-water-remasterizado-en-dolby-atmos">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Nuevo video musical de Deep Purple &quot;Smoke On the Water&quot; remasterizado en Dolby Atmos</h3><p> Deep Purple, la legendaria banda de rock, sorprende a sus seguidores con el lanzamiento del video musical remasterizado de &quot;Smoke On the Water&quot;. Esta vez, la e</p><div class="m"><span>drbongobong</span><span>18 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/celebrando-24-anos-de-punk-rock-en-olavarria-con-demencia-senil">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>¡Celebrando 24 años de Punk Rock en Olavarría con Demencia Senil!</h3><p> Desde sus inicios en noviembre de 1999, la banda Demencia Senil ha sido un pilar fundamental en la escena del punk rock de Olavarría. Con una carrera que se re</p><div class="m"><span>drbongobong</span><span>15 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/fito-paez-celebra-61-anos-descubre-sus-temas-mas-escuchados-en-spotify">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Fito Páez Celebra 61 Años: Descubre sus temas más escuchados en Spotify</h3><p> Este miércoles 13 de marzo, Fito Páez, leyenda viviente del rock argentino, cumple 61 años. Su carrera, marcada por éxitos y reconocimientos, sigue brillando c</p><div class="m"><span>drbongobong</span><span>13 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/recuerdos-y-reflexiones-siete-anos-despues-del-concierto-del-indio-solari-en-olavarria">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Recuerdos y Reflexiones: Siete años después del concierto del Indio Solari en Olavarría</h3><p> Después de aquel concierto que prometía ser una celebración inolvidable, la ciudad de Olavarría quedó marcada por la tragedia. La multitudinaria convocatoria p</p><div class="m"><span>drbongobong</span><span>12 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/daniel-melingo-reversiona-tangos-bajos-con-cristian-pity-alvarez">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Daniel Melingo reversiona &quot;Tangos Bajos&quot; con Cristian &quot;Pity&quot; Álvarez</h3><p> El músico argentino Daniel Melingo está dando un nuevo giro a su álbum &quot;Tangos Bajos&quot; lanzado en 1998, y esta vez lo hace con la colaboración del icónico Crist</p><div class="m"><span>drbongobong</span><span>10 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/airbag-arrasa-con-entradas-agotadas-y-rinde-homenaje-a-akira-toriyama">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Airbag arrasa con entradas agotadas y rinde homenaje a Akira Toriyama</h3><p> Airbag, una de las bandas más populares de Argentina, ha dejado boquiabiertos a sus seguidores con una serie de conciertos completamente agotados. Desde el 29 </p><div class="m"><span>drbongobong</span><span>10 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/skay-y-los-fakires-encenderan-el-luna-park-con-su-musica">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Skay y Los Fakires encenderán el Luna Park con su música</h3><p> Skay Beilinson, el maestro de la guitarra cuyos acordes han dejado huella en el rock argentino, nos invita a un encuentro mágico en el histórico Luna Park de B</p><div class="m"><span>drbongobong</span><span>7 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/caja-negra-y-la-orquesta-sinfonica-municipal-mario-patane-ofrecen-un-homenaje-magico-a-soda-stereo">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Caja Negra y la Orquesta Sinfónica Municipal Mario Patané ofrecen un homenaje mágico a Soda Stereo</h3><p> Caja Negra, la banda homenaje a Soda Stereo de Olavarría, se unirá a la prestigiosa Orquesta Sinfónica Municipal &quot;Mtro. Mario Patané&quot; de Olavarría dirigida por</p><div class="m"><span>drbongobong</span><span>6 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/skay-y-walter-sidoti-reviven-ji-ji-ji-de-los-redondos-en-un-inolvidable-encuentro">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Skay y Walter Sidoti reviven &quot;Ji ji ji&quot; de Los Redondos en un inolvidable encuentro</h3><p> El sábado 24 de febrero, Skay Beilinson y Walter Sidoti, guitarrista y baterista fundacionales de la legendaria banda argentina Patricio Rey y sus Redonditos d</p><div class="m"><span>drbongobong</span><span>6 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/ya-llega-el-lollapalooza-argentina-2024">
+      <div class="cover" style="background:linear-gradient(to bottom right,#0a3a2a,#061f16)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Ya llega el Lollapalooza Argentina 2024</h3><p> Line Up de el Lollapalooza 2024 El Lollapalooza Argentina regresa en grande los días 15, 16 y 17 de marzo de 2024 en el Hipódromo de San Isidro. Los abonos par</p><div class="m"><span>drbongobong</span><span>6 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/wos-anuncia-gran-fiesta-en-el-cilindro-de-avellaneda-para-presentar-su-nuevo-album-descartable">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Wos anuncia gran fiesta en el Cilindro de Avellaneda para presentar su nuevo álbum &quot;Descartable&quot;</h3><p> Wos prepara una celebración monumental para dar a conocer su próximo álbum, &quot;Descartable&quot;, con un evento en el Coliseo de Avellaneda el 20 de abril. https://ww</p><div class="m"><span>drbongobong</span><span>6 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/slash-anuncio-un-nuevo-album-solista-con-tematica-de-blues">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Slash anunció un nuevo álbum solista con temática de blues</h3><p> DERBY, EAST MIDLANDS, REINO UNIDO: El guitarrista Slash tocando su guitarra Gibson Les Paul Appetite for Destruction personalizada. En vivo en el escenario del</p><div class="m"><span>drbongobong</span><span>6 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/subastan-en-california-un-dibujo-original-de-john-lennon">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Subastan en California un dibujo original de John Lennon</h3><p> John Lennon y Yoko Ono fotografiados el 2 de noviembre de 1980, fue la primera vez en cinco años que Lennon fue fotografiado profesionalmente y la última sesió</p><div class="m"><span>drbongobong</span><span>5 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/manu-chao-visita-el-potrero-de-dios-en-villa-fiorito-y-rinde-emotivo-homenaje-a-maradona">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Manu Chao visita 'El Potrero de Dios' en Villa Fiorito y rinde emotivo homenaje a Maradona</h3><p> El pasado lunes 26 de febrero en una conmovedora jornada, Villa Fiorito, el barrio que vio nacer a la leyenda del fútbol Diego Maradona, se convirtió en escena</p><div class="m"><span>drbongobong</span><span>2 de marzo de 2024</span></div></div>
+    </a><a class="card" href="/posts/adidas-lanza-edicion-especial-de-zapatillas-retro-sl-72-en-colaboracion-con-la-familia-de-bob-marley">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Adidas lanza edición especial de zapatillas retro SL 72 en colaboración con la familia de Bob Marley</h3><p> Adidas se une al legado de Bob Marley en una colaboración histórica, lanzando una edición especial de las zapatillas retro SL 72. Esta colaboración representa </p><div class="m"><span>drbongobong</span><span>29 de febrero de 2024</span></div></div>
+    </a><a class="card" href="/posts/eric-clapton-anuncia-su-regreso-a-buenos-aires-en-su-gira-de-60-anos-de-carrera">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Eric Clapton anuncia su regreso a Buenos Aires en su gira de 60 años de carrera</h3><p> Eric Clapton, uno de los más grandes guitarristas de todos los tiempos, confirma su visita a Buenos Aires como parte de su gira mundial en celebración de sus 6</p><div class="m"><span>drbongobong</span><span>29 de febrero de 2024</span></div></div>
+    </a><a class="card" href="/posts/presentan-nueva-moneda-en-homenaje-a-george-michael-en-el-reino-unido">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Presentan nueva moneda en homenaje a George Michael en el Reino Unido</h3><p> La fábrica de moneda del Reino Unido, The Royal Mint, sorprendió al mundo del coleccionismo al presentar una nueva moneda en homenaje al legendario cantante br</p><div class="m"><span>drbongobong</span><span>26 de febrero de 2024</span></div></div>
+    </a><a class="card" href="/posts/charly-garcia-detras-de-escena-del-nuevo-disco-en-fotos-exclusivas">
+      <div class="cover" style="background:linear-gradient(to bottom right,#3a0a14,#160308)">
+        <span class="tag">Noticias</span>
+        <b>N</b>
+        <span>Noticias</span>
+      </div>
+      <div class="body"><h3>Charly García: Detrás de Escena del Nuevo Disco en Fotos Exclusivas</h3><p> ¡Noticias frescas desde el mundo de la música! os sorprendieron con emocionantes imágenes que nos muestran a Charly García preparando su próximo disco de estud</p><div class="m"><span>drbongobong</span><span>20 de febrero de 2024</span></div></div>
+    </a></div></section></main>
+<footer><div class="foot"><div><div class="brand" style="margin-bottom:1rem">BONGO BONG</div><p style="margin:0;max-width:20rem">Radio, streaming y cultura. El latido del mundo conectando corazones a través del arte.</p></div><div><h4>NAVEGACIÓN</h4><a href="/posts">Artículos</a><a href="/categories">Categorías</a><a href="/radio">Radio en vivo</a></div><div><h4>REDES</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div><div><h4>NEWSLETTER</h4><div class="news"><input placeholder="tu@email.com"/><button>→</button></div></div></div></footer>
+</body></html>

@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #0d0d0d;
+  --accent: #c41e3a;
+  --accent-2: #e8253d;
+  --accent-soft: rgba(196, 30, 58, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== Glassmorphism navbar ===== */
+.glass {
+  background: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ===== Animated top accent line ===== */
+.accent-line {
+  height: 3px;
+  background: linear-gradient(90deg, #c41e3a, #e8253d, #c41e3a);
+  background-size: 200% 100%;
+  animation: gradient-x 6s ease infinite;
+}
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== Scroll reveal (seguro: visible por defecto, se oculta solo si hay JS) ===== */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.js .reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ===== Glow sutil en acentos ===== */
+.glow-accent {
+  box-shadow: 0 0 0 rgba(232, 37, 61, 0);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.glow-accent:hover {
+  box-shadow: 0 8px 40px rgba(232, 37, 61, 0.35);
+  transform: translateY(-4px);
+}
+
+/* ===== Hover lift para cards ===== */
+.lift {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease, border-color 0.45s ease;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  border-color: rgba(232, 37, 61, 0.4);
+}
+
+/* ===== Imagen con zoom suave al hover ===== */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* ===== Grano / film grain sutil ===== */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== Aura radial animada (hero) ===== */
+.aura {
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 40%),
+    rgba(232, 37, 61, 0.18),
+    transparent 60%
+  );
+  animation: aura-drift 14s ease-in-out infinite alternate;
+}
+@keyframes aura-drift {
+  0% { --mx: 30%; --my: 30%; }
+  100% { --mx: 70%; --my: 60%; }
+}
+
+/* ===== Shimmer en "EN VIVO" ===== */
+.pulse-dot {
+  animation: dot-pulse 1.6s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+.live-glow {
+  box-shadow: 0 0 14px rgba(232, 37, 61, 0.6);
+  animation: live-breath 2.4s ease-in-out infinite;
+}
+@keyframes live-breath {
+  0%, 100% { box-shadow: 0 0 10px rgba(232, 37, 61, 0.45); }
+  50% { box-shadow: 0 0 22px rgba(232, 37, 61, 0.8); }
+}
+
+/* ===== Ticker ===== */
+.ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== Bonguito logo (PNG transparente) ===== */
+.bonguito {
+  filter: drop-shadow(0 0 8px rgba(232, 37, 61, 0.25));
+}
+
+/* ===== Tipografía display ===== */
+.font-display {
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ===== Article content typography ===== */
+.prose-content {
+  line-height: 1.8;
+  color: #d4d4d4;
+}
+.prose-content h2 { font-size: 1.6rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: #fff; }
+.prose-content h3 { font-size: 1.3rem; font-weight: 700; margin: 1.25rem 0 0.5rem; color: #fff; }
+.prose-content p { margin: 0.75rem 0; }
+.prose-content a { color: #e8253d; text-decoration: underline; }
+.prose-content img { max-width: 100%; border-radius: 12px; margin: 1rem 0; }
+.prose-content blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1rem 0; color: #a0a0a0; }
+.prose-content ul, .prose-content ol { margin: 0.75rem 0 0.75rem 1.5rem; }
+.prose-content pre { background: #1a1a1a; padding: 1rem; border-radius: 8px; overflow-x: auto; }
