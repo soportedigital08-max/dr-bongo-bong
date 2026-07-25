@@ -113,6 +113,15 @@ export default function RichEditor({
 
   async function uploadFile(file: File): Promise<string | null> {
     if (!file.type.startsWith('image/')) return null;
+    // Modo preview (Vercel): genera data URL local para probar sin auth/DB.
+    if (process.env.NEXT_PUBLIC_PREVIEW === '1') {
+      return await new Promise<string | null>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      });
+    }
     setUploading(true);
     try {
       const resized = await resizeImage(file);
@@ -236,7 +245,7 @@ export default function RichEditor({
 
       {tab === 'visual' ? (
         <>
-          <div className="flex flex-wrap items-center gap-1 p-2 border-b border-white/10 bg-bg-2 sticky top-0 z-10">
+          <div className="relative flex flex-wrap items-center gap-1 p-2 border-b border-white/10 bg-bg-2 sticky top-0 z-10">
             <button type="button" className={btn(editor.isActive('bold'))} onClick={() => editor.chain().focus().toggleBold().run()}><b>B</b></button>
             <button type="button" className={btn(editor.isActive('italic'))} onClick={() => editor.chain().focus().toggleItalic().run()}><i>I</i></button>
             <span className="w-px h-5 bg-white/10 mx-1" />
@@ -258,9 +267,9 @@ export default function RichEditor({
             <span className="w-px h-5 bg-white/10 mx-1" />
             <button type="button" className={btn(false)} onClick={() => setShowTpl((v) => !v)}>📐 Plantillas</button>
             {showTpl && (
-              <div className="absolute mt-1 bg-bg-1 border border-white/10 rounded-lg shadow-xl p-1 z-20">
+              <div className="absolute left-0 top-full mt-1 w-56 bg-[#0a0a0a] border border-white/20 rounded-lg shadow-2xl p-1 z-50">
                 {Object.entries(IMG_TEMPLATES).map(([k, t]) => (
-                  <button key={k} type="button" className="block w-full text-left text-sm text-text-2 hover:bg-white/10 px-3 py-1.5 rounded" onClick={() => handleTemplate(k)}>
+                  <button key={k} type="button" className="block w-full text-left text-sm text-white hover:bg-white/15 px-3 py-2 rounded" onClick={() => handleTemplate(k)}>
                     {t.label}
                   </button>
                 ))}
