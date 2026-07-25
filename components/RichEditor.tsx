@@ -136,7 +136,9 @@ export default function RichEditor({
   }
 
   async function insertImageWithClass(url: string, cls: string) {
-    editor?.chain().focus().setImage({ src: url, alt: '', class: `article-img ${cls}` }).run();
+    editor?.chain().focus()
+      .insertContent({ type: 'image', attrs: { src: url, alt: '', class: `article-img ${cls}` } })
+      .run();
   }
 
   // Plantilla de imagen: dispara file picker, sube y arma el bloque con la clase
