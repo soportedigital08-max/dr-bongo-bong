@@ -160,8 +160,7 @@ export default function RichEditor({
       const u1 = await uploadFile(a); const u2 = await uploadFile(b);
       if (u1 && u2) {
         editor?.chain().focus()
-          .insertContent({ type: 'image', attrs: { src: u1, alt: '', class: 'article-img img-left img-small' } })
-          .insertContent({ type: 'image', attrs: { src: u2, alt: '', class: 'article-img img-right img-small' } })
+          .insertContent(`<div class="tpl-two-images"><img src="${u1}" alt="" class="article-img img-left img-small"/><img src="${u2}" alt="" class="article-img img-right img-small"/></div><p></p>`)
           .run();
       }
       return;
@@ -221,18 +220,21 @@ export default function RichEditor({
   const btn = (active: boolean) =>
     `px-2.5 py-1 rounded text-sm transition-colors ${active ? 'bg-accent text-white' : 'text-text-2 hover:bg-white/10'}`;
 
-  // M/L/S: recorre el doc y aplica la clase a TODAS las imágenes (robusto, sin deseleccionar)
+  // M/L/S: aplica la clase a TODAS las imágenes del doc (robusto, sin selección frágil)
   function applySize(cls: string) {
     const ed = editor;
     if (!ed) return;
     let count = 0;
-    ed.state.doc.descendants((node, pos) => {
+    const { state, view } = ed;
+    const tr = state.tr;
+    state.doc.descendants((node, pos) => {
       if (node.type.name === 'image') {
-        ed.chain().setNodeSelection(pos).updateAttributes('image', { class: `article-img ${cls}` }).run();
+        tr.setNodeMarkup(pos, undefined, { ...node.attrs, class: `article-img ${cls}` });
         count++;
       }
     });
-    if (count === 0) alert('Primero insertá una imagen para cambiar su tamaño.');
+    if (count === 0) { alert('Primero insertá una imagen para cambiar su tamaño.'); return; }
+    view.dispatch(tr);
   }
 
   function insertVideo() {
