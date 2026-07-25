@@ -136,7 +136,7 @@ export default function RichEditor({
   }
 
   async function insertImageWithClass(url: string, cls: string) {
-    editor?.chain().focus().insertContent(`<img src="${url}" alt="" class="article-img ${cls}"/>`).run();
+    editor?.chain().focus().setImage({ src: url, alt: '', class: `article-img ${cls}` }).run();
   }
 
   // Plantilla de imagen: dispara file picker, sube y arma el bloque con la clase
@@ -156,7 +156,12 @@ export default function RichEditor({
       const b = await pick();
       if (!b) return;
       const u1 = await uploadFile(a); const u2 = await uploadFile(b);
-      if (u1 && u2) editor?.chain().focus().insertContent(`<div class="tpl-two-images"><img src="${u1}" alt=""/><img src="${u2}" alt=""/></div><p></p>`).run();
+      if (u1 && u2) {
+        editor?.chain().focus()
+          .insertContent({ type: 'image', attrs: { src: u1, alt: '', class: 'article-img img-left img-small' } })
+          .insertContent({ type: 'image', attrs: { src: u2, alt: '', class: 'article-img img-right img-small' } })
+          .run();
+      }
       return;
     }
     const input = document.createElement('input');
@@ -168,7 +173,12 @@ export default function RichEditor({
       if (!url) return;
       const cls = key === 'imageWide' || key === 'imageBanner' ? 'img-center img-full' : key === 'imageSide' ? 'img-left img-small' : 'img-center img-med';
       const cap = tpl.caption ? `<figcaption>${tpl.caption}</figcaption>` : '';
-      editor?.chain().focus().insertContent(`<figure class="${tpl.wrapperClass}"><img src="${url}" alt="" class="article-img ${cls}"/>${cap}</figure><p></p>`).run();
+      editor?.chain().focus()
+        .insertContent(`<figure class="${tpl.wrapperClass}">`)
+        .insertContent({ type: 'image', attrs: { src: url, alt: '', class: `article-img ${cls}` } })
+        .insertContent(cap || '')
+        .insertContent('<p></p>')
+        .run();
     };
     input.click();
   }
