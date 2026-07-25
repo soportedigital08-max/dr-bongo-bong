@@ -161,6 +161,12 @@ export default function Editor({ postId }: { postId?: string }) {
   }
 
   useEffect(() => {
+    // Modo preview (Vercel): salta el login para ver el diseño del editor sin DB.
+    if (process.env.NEXT_PUBLIC_PREVIEW === '1') {
+      setToken('preview');
+      setCategories([]);
+      return;
+    }
     const t = localStorage.getItem('dbb_token') || '';
     if (!t) { router.push('/admin/login'); return; }
     setToken(t);
