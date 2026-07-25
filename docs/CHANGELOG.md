@@ -113,6 +113,15 @@ Formato: fecha — cambio — motivo — evidencia de verificación.
 - **Verificación**: `npm run build` exit0, type-check OK. Pendiente validación visual en prod (deploy Pasos 1-8).
 - **Nota de UX**: el editor es WYSIWYG; la "vista previa" antes de subir ya está cubierta por el preview en vivo. Si querés un modal de preview aparte, se agrega (no era necesario).
 
+### Flujo de previsualización local (2026-07-25, pedido del usuario)
+- **Problema reportado**: el dev server (`next dev`) en la PC de Ariel se **corrompía el `.next` con hot-reload** (MODULE_NOT_FOUND en `app/admin/page.js`), dando pantalla blanca. Los procesos `node.exe` colgados no se mataban con `kill`/`taskkill` (permisos Windows).
+- **Solución adoptada**: NO usar `next dev` para previsualizar. En su lugar:
+  1. **Repo GitHub** iniciado (`git init`, `.gitignore` excluye `node_modules/`, `.next/`, `.env*`, `public_html_export/`, `prisma/dev.db`, `*.sql`, `*.zip`).
+  2. **Commit inicial** (318 archivos de código; SIN `.env` sensibles: `.env.old`/`.env.production.dist`/`.env.server` fueron removidos del stage).
+  3. **`preview.bat`**: al ejecutarlo, construye el build (si no existe) y sirve el **standalone en localhost:4400** con `node .next/standalone/server.js`. Es el build de producción → **no se corrompe con hot-reload** porque no lo usa. El sitio de cPanel queda **APAGADO** hasta el deploy. Para cerrar: Ctrl+C.
+- **Ventaja**: Ariel ve los cambios ANTES de subir, sin dejar online el sitio, sin el bug del dev. El deploy a cPanel sigue siendo los Pasos 1-8 (separado).
+- **Pendiente**: crear el repo remoto en GitHub (Ariel debe autorizar con su cuenta; NO se puso ninguna credencial en el chat). Subir con `git push -u origin main` cuando Ariel lo indique.
+
 ### MISIÓN PREMIUM (resumen ejecutivo)
 - Monetización recomendada arranque: Cafecito.me + afiliados; AdSense diferido hasta ~10k sesiones/mes.
 - Cross-post: Meta Graph API (gratis, automatizable en Hermes).
