@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { slugify } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 // AI Publishing Bridge — let an authorized agent (Claude / any AI tool) publish.
 export async function POST(req: Request) {
   try {
