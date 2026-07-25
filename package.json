@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "echo 'skip prisma generate in shared hosting'",
+    "postinstall": "prisma generate",
     "migrate": "node scripts/migrate-wp.mjs",
     "db:push": "prisma db push",
     "seed": "node scripts/seed.mjs"
