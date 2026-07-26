@@ -51,6 +51,27 @@ function embedHTML(url: string): string {
   return '';
 }
 
+// Nodo: Dos imágenes en grid (renderiza de verdad, no se pierde como HTML string)
+const TwoImages = Node.create({
+  name: 'twoImages',
+  group: 'block',
+  atom: true,
+  addAttributes() {
+    return { src1: { default: '' }, src2: { default: '' } };
+  },
+  parseHTML() {
+    return [{ tag: 'div[data-two-images]' }];
+  },
+  renderHTML({ HTMLAttributes }) {
+    return [
+      'div',
+      { 'data-two-images': '', class: 'tpl-two-images' },
+      ['img', { src: HTMLAttributes.src1, alt: '', class: 'article-img img-small' }],
+      ['img', { src: HTMLAttributes.src2, alt: '', class: 'article-img img-small' }],
+    ];
+  },
+});
+
 const LiveEmbed = Node.create({
   name: 'liveEmbed',
   group: 'block',
@@ -160,7 +181,8 @@ export default function RichEditor({
       const u1 = await uploadFile(a); const u2 = await uploadFile(b);
       if (u1 && u2) {
         editor?.chain().focus()
-          .insertContent(`<div class="tpl-two-images"><img src="${u1}" alt="" class="article-img img-left img-small"/><img src="${u2}" alt="" class="article-img img-right img-small"/></div><p></p>`)
+          .insertContent({ type: 'twoImages', attrs: { src1: u1, src2: u2 } })
+          .insertContent('<p></p>')
           .run();
       }
       return;
@@ -192,6 +214,7 @@ export default function RichEditor({
       Image.configure({ inline: false, HTMLAttributes: { class: 'article-img' } }),
       Link.configure({ openOnClick: false, HTMLAttributes: { rel: 'noopener', target: '_blank' } }),
       LiveEmbed,
+      TwoImages,
     ],
     editorProps: {
       attributes: { class: 'tiptap-content prose-content' },
