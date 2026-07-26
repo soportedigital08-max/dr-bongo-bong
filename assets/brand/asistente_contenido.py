@@ -20,7 +20,8 @@ def extraer_nombres(texto):
     # 2) nombres propios de 2+ letras que empiezan mayus
     palabras = re.findall(r'\b([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+){0,2})', texto)
     stop = {'El','La','Los','Las','Un','Una','Y','En','De','Se','Su','Por','Para','Con','Al',
-            'A','O','Mi','Tu','Palermo','Buenos','Argentina','Facebook','Instagram','YouTube','TikTok'}
+            'A','O','Mi','Tu','Lo','Palermo','Buenos','Argentina','Facebook','Instagram',
+            'YouTube','TikTok','ESPN','WWE'}
     propios = [p for p in palabras if p not in stop]
     # pone handles primero, luego nombres; evita duplicados
     unidos = []
