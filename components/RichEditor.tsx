@@ -249,12 +249,7 @@ export default function RichEditor({
       onChange(html);
       if (tab === 'html') setHtmlDraft(html);
     },
-    onCreate: ({ editor }) => {
-      (window as any).__editor = editor;
-    },
   });
-
-  if (typeof window !== 'undefined') (window as any).__editor = editor;
 
   if (!editor) return <div className="bg-bg-3 border border-white/10 rounded-lg p-4 text-text-3">Cargando editor…</div>;
 
