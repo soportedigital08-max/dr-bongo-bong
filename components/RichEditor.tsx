@@ -182,23 +182,23 @@ export default function RichEditor({
     if (!tpl) return;
     setShowTpl(false);
     if (tpl.two) {
-      const pick = () => new Promise<File | null>((res) => {
-        const i = document.createElement('input');
-        i.type = 'file'; i.accept = 'image/*';
-        i.onchange = () => res(i.files?.[0] || null);
-        i.click();
-      });
-      const a = await pick();
-      if (!a) return;
-      const b = await pick();
-      if (!b) return;
-      const u1 = await uploadFile(a); const u2 = await uploadFile(b);
-      if (u1 && u2) {
-        editor?.chain().focus()
-          .insertContent({ type: 'twoImages', attrs: { src1: u1, src2: u2 } })
-          .insertContent('<p></p>')
-          .run();
-      }
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.multiple = true;
+      input.onchange = async () => {
+        const files = Array.from(input.files || []).slice(0, 2);
+        if (files.length < 2) { alert('Elegí 2 imágenes para esta plantilla.'); return; }
+        const u1 = await uploadFile(files[0]);
+        const u2 = await uploadFile(files[1]);
+        if (u1 && u2) {
+          editor?.chain().focus()
+            .insertContent({ type: 'twoImages', attrs: { src1: u1, src2: u2 } })
+            .insertContent('<p></p>')
+            .run();
+        }
+      };
+      input.click();
       return;
     }
     const input = document.createElement('input');
