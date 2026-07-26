@@ -130,3 +130,26 @@ Usuario admin por defecto (seed): admin@drbongobong.com.ar / BongoBong2026!
 - Las imágenes destacadas de WordPress NO se migraron automáticamente; los scripts
   `asignar-portadas-db.mjs` + copia física a `public_html/portadas/` resuelven las portadas.
 - Documentación extendida en `docs/` y `governance/`.
+
+---
+
+## INTEGRACIÓN GIT ↔ cPanel (menos vueltas — recomendado)
+Repo: `https://github.com/soportedigital08-max/dr-bongo-bong.git` (rama `main`).
+
+### En cPanel (lo hacés una sola vez)
+1. **Git Version Control** → Create → Repository URL: la de arriba → Clone en
+   `/home/drbongob/NodeJS-TestApp` (mismo app root).
+2. (Opcional) **Deployment** → agregar hook que corra `bash deploy.sh` tras cada pull.
+
+### Después de cada cambio (lo que hacés vos)
+1. Hermes sube a GitHub (push).
+2. cPanel → **Git Version Control → Update** (trae los cambios).
+3. Terminal de cPanel: `bash deploy.sh` (instala, build, copia static).
+4. Node.js App Manager: **Stop** → 30 s → **Start**.
+5. Verificar con Ctrl+F5.
+
+Con esto se elimina el ZIP y el descomprir. `deploy.sh` está en el repo y se clona solo.
+
+⚠️ El `.gitignore` ya excluye `.env`, `node_modules`, `.next`, `prisma/dev.db` → la DB del
+server queda intacta y no se suben secretos.
+
