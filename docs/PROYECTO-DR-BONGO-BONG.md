@@ -165,6 +165,8 @@ El "aprendizaje" se afina: el editor marca qué rechaza y se ajusta el generador
 - `/api/publish` (x-api-key) crea nota publicada.
 - `/api/upload` (JWT) sube imágenes.
 - Embeds y editor visual funcionando.
+- `app/api/social/crosspost/route.ts` (x-api-key) hace cross-post a IG+FB vía Meta Graph API. Listo para usar; devuelve `configured:false` hasta que el usuario setee `META_IG_USER_ID` / `META_FB_PAGE_ID` / `META_ACCESS_TOKEN` en env vars de cPanel.
+- Kit visual + asistente de contenido en `assets/brand/` (ver `docs/ECOSISTEMA-REDES.md`).
 
 ### Pendiente (requiere usuario)
 - [ ] **Meta App** + tokens IG/FB (cross-post vía Graph API — recomendado, gratis).

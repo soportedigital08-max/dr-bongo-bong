@@ -1,0 +1,1 @@
+[0:v]scale=1080:1350:force_original_aspect_ratio=increase,crop=1080:1350,setsar=1[bg];[1:v]scale=1080:1350:force_original_aspect_ratio=increase,crop=1080:1350[s];[bg][s]overlay=format=auto:shortest=1[base];[2:v]scale=216:-1[lg];[base][lg]overlay=789:75[conlogo];[3:v]scale=1080:-1[zc];[conlogo][zc]overlay=0:1350-ih[out]
