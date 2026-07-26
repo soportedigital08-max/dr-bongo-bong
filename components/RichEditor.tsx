@@ -7,6 +7,20 @@ import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import { Node, mergeAttributes } from '@tiptap/core';
 
+// Imagen con atributo `class` real (para que M/L/S y plantillas puedan setear tamaño)
+const ImageExt = Image.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      class: {
+        default: null,
+        parseHTML: (el) => el.getAttribute('class'),
+        renderHTML: (attrs) => (attrs.class ? { class: attrs.class } : {}),
+      },
+    };
+  },
+});
+
 // Redimensiona y comprime la imagen en el navegador antes de subirla (máx 1600px, JPEG 0.85)
 async function resizeImage(file: File): Promise<File> {
   if (file.type === 'image/gif') return file;
@@ -195,13 +209,12 @@ export default function RichEditor({
       const url = await uploadFile(file);
       if (!url) return;
       const cls = key === 'imageWide' || key === 'imageBanner' ? 'img-center img-full' : key === 'imageSide' ? 'img-left img-small' : 'img-center img-med';
-      const cap = tpl.caption ? `<figcaption>${tpl.caption}</figcaption>` : '';
-      editor?.chain().focus()
-        .insertContent(`<figure class="${tpl.wrapperClass}">`)
-        .insertContent({ type: 'image', attrs: { src: url, alt: '', class: `article-img ${cls}` } })
-        .insertContent(cap || '')
-        .insertContent('<p></p>')
-        .run();
+      const chain = editor?.chain().focus()
+        .insertContent({ type: 'image', attrs: { src: url, alt: '', class: `article-img ${cls}` } });
+      if (tpl.caption) {
+        chain?.insertContent({ type: 'paragraph', content: [{ type: 'text', text: tpl.caption }] });
+      }
+      chain?.insertContent('<p></p>').run();
     };
     input.click();
   }
@@ -211,7 +224,7 @@ export default function RichEditor({
     content: value || '',
     extensions: [
       StarterKit.configure({ heading: { levels: [2, 3] } }),
-      Image.configure({ inline: false, HTMLAttributes: { class: 'article-img' } }),
+      ImageExt.configure({ inline: false, HTMLAttributes: { class: 'article-img' } }),
       Link.configure({ openOnClick: false, HTMLAttributes: { rel: 'noopener', target: '_blank' } }),
       LiveEmbed,
       TwoImages,
