@@ -249,6 +249,9 @@ export default function RichEditor({
       onChange(html);
       if (tab === 'html') setHtmlDraft(html);
     },
+    onCreate: ({ editor }) => {
+      (window as any).__editor = editor;
+    },
   });
 
   if (typeof window !== 'undefined') (window as any).__editor = editor;
