@@ -164,9 +164,27 @@ export default function RichEditor({
       fd.append('file', resized);
       const res = await fetch('/api/upload', { method: 'POST', headers: { Authorization: 'Bearer ' + token }, body: fd });
       const data = await res.json();
-      if (!res.ok) { alert(data.error || 'Error al subir'); return null; }
+      if (!res.ok) {
+        // Fallback: mostramos la imagen localmente aunque falle el upload al server,
+        // para que la plantilla no quede solo con el texto.
+        console.warn('upload server falló, uso data URL local:', data?.error);
+        return await new Promise<string | null>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(file);
+        });
+      }
       return data.url;
-    } catch { alert('Error de conexión al subir'); return null; }
+    } catch {
+      // Fallback local también en error de red
+      return await new Promise<string | null>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      });
+    }
     finally { setUploading(false); }
   }
 
