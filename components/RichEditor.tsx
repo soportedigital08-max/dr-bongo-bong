@@ -251,6 +251,8 @@ export default function RichEditor({
     },
   });
 
+  if (typeof window !== 'undefined') (window as any).__editor = editor;
+
   if (!editor) return <div className="bg-bg-3 border border-white/10 rounded-lg p-4 text-text-3">Cargando editor…</div>;
 
   const btn = (active: boolean) =>
