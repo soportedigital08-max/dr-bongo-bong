@@ -19,13 +19,13 @@ const SITE_URL = process.env.SITE_URL || 'https://drbongobong.com.ar';
 // ---------- META (IG + FB) ----------
 async function postToInstagram(link: string, caption: string) {
   const c = await fetch(
-    `https://graph.facebook.com/v20.0/${META_IG}/media?image_url=${encodeURIComponent(link)}&caption=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
+    `https://graph.facebook.com/v21.0/${META_IG}/media?image_url=${encodeURIComponent(link)}&caption=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
     { method: 'POST' }
   );
   const cj = await c.json();
   if (!cj.id) throw new Error('IG container: ' + JSON.stringify(cj));
   const p = await fetch(
-    `https://graph.facebook.com/v20.0/${META_IG}/media_publish?creation_id=${cj.id}&access_token=${META_TOKEN}`,
+    `https://graph.facebook.com/v21.0/${META_IG}/media_publish?creation_id=${cj.id}&access_token=${META_TOKEN}`,
     { method: 'POST' }
   );
   return await p.json();
@@ -33,7 +33,7 @@ async function postToInstagram(link: string, caption: string) {
 
 async function postToFacebook(link: string, caption: string) {
   const r = await fetch(
-    `https://graph.facebook.com/v20.0/${META_FB}/feed?link=${encodeURIComponent(link)}&message=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
+    `https://graph.facebook.com/v21.0/${META_FB}/feed?link=${encodeURIComponent(link)}&message=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
     { method: 'POST' }
   );
   return await r.json();
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     const body = await req.json();
-    const { slug, title, excerpt, featuredImage, category } = body;
+    const { slug, title, excerpt, featuredImage, category, dryRun } = body;
     if (!slug || !title) return NextResponse.json({ error: 'slug y title requeridos' }, { status: 400 });
 
     const article: ArticleInput = {
@@ -77,15 +77,20 @@ export async function POST(req: Request) {
     const posts = buildSocialPosts(article);
     const byNet = Object.fromEntries(posts.map((p) => [p.network, p]));
 
-    const results: any = { configured: {} };
+    const results: any = { configured: {}, dryRun: !!dryRun };
     const link = article.url;
 
     // IG + FB (Meta)
     if (META_IG && META_FB && META_TOKEN) {
-      try { results.instagram = await postToInstagram(link, byNet.instagram.caption); }
-      catch (e: any) { results.instagram = { error: e.message }; }
-      try { results.facebook = await postToFacebook(link, byNet.facebook.caption); }
-      catch (e: any) { results.facebook = { error: e.message }; }
+      if (dryRun) {
+        results.instagram = { wouldPost: true, caption: byNet.instagram.caption, to: META_IG };
+        results.facebook = { wouldPost: true, caption: byNet.facebook.caption, to: META_FB };
+      } else {
+        try { results.instagram = await postToInstagram(link, byNet.instagram.caption); }
+        catch (e: any) { results.instagram = { error: e.message }; }
+        try { results.facebook = await postToFacebook(link, byNet.facebook.caption); }
+        catch (e: any) { results.facebook = { error: e.message }; }
+      }
       results.configured.instagram = true;
       results.configured.facebook = true;
     } else {
@@ -95,8 +100,12 @@ export async function POST(req: Request) {
 
     // TikTok (caption listo; video se sube con token)
     if (TIKTOK_TOKEN && TIKTOK_OPEN_ID) {
-      try { results.tiktok = await postToTikTok(byNet.tiktok.caption, byNet.tiktok.mediaUrl); }
-      catch (e: any) { results.tiktok = { error: e.message }; }
+      if (dryRun) {
+        results.tiktok = { wouldPost: true, caption: byNet.tiktok.caption, to: TIKTOK_OPEN_ID };
+      } else {
+        try { results.tiktok = await postToTikTok(byNet.tiktok.caption, byNet.tiktok.mediaUrl); }
+        catch (e: any) { results.tiktok = { error: e.message }; }
+      }
       results.configured.tiktok = true;
     } else {
       results.configured.tiktok = false;
@@ -104,8 +113,12 @@ export async function POST(req: Request) {
 
     // YouTube (pieza lista; video se sube con token)
     if (YT_TOKEN) {
-      try { results.youtube = await postToYouTube(byNet.youtube); }
-      catch (e: any) { results.youtube = { error: e.message }; }
+      if (dryRun) {
+        results.youtube = { wouldPost: true, title: byNet.youtube.title, description: byNet.youtube.description };
+      } else {
+        try { results.youtube = await postToYouTube(byNet.youtube); }
+        catch (e: any) { results.youtube = { error: e.message }; }
+      }
       results.configured.youtube = true;
     } else {
       results.configured.youtube = false;
