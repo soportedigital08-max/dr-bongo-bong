@@ -17,9 +17,9 @@ const YT_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
 const SITE_URL = process.env.SITE_URL || 'https://drbongobong.com.ar';
 
 // ---------- META (IG + FB) ----------
-async function postToInstagram(link: string, caption: string) {
+async function postToInstagram(imageUrl: string, caption: string) {
   const c = await fetch(
-    `https://graph.facebook.com/v21.0/${META_IG}/media?image_url=${encodeURIComponent(link)}&caption=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
+    `https://graph.facebook.com/v21.0/${META_IG}/media?image_url=${encodeURIComponent(imageUrl)}&caption=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
     { method: 'POST' }
   );
   const cj = await c.json();
@@ -32,8 +32,15 @@ async function postToInstagram(link: string, caption: string) {
 }
 
 async function postToFacebook(link: string, caption: string) {
+  // Meta exige un page-scoped token para publicar en la pagina.
+  // Lo derivamos del system-user token en runtime (sin var extra en Cpanel).
+  const tokRes = await fetch(
+    `https://graph.facebook.com/v21.0/${META_FB}?fields=access_token&access_token=${META_TOKEN}`
+  );
+  const tokJson = await tokRes.json();
+  const pageToken = tokJson.access_token || META_TOKEN;
   const r = await fetch(
-    `https://graph.facebook.com/v21.0/${META_FB}/feed?link=${encodeURIComponent(link)}&message=${encodeURIComponent(caption)}&access_token=${META_TOKEN}`,
+    `https://graph.facebook.com/v21.0/${META_FB}/feed?link=${encodeURIComponent(link)}&message=${encodeURIComponent(caption)}&access_token=${pageToken}`,
     { method: 'POST' }
   );
   return await r.json();
@@ -86,7 +93,7 @@ export async function POST(req: Request) {
         results.instagram = { wouldPost: true, caption: byNet.instagram.caption, to: META_IG };
         results.facebook = { wouldPost: true, caption: byNet.facebook.caption, to: META_FB };
       } else {
-        try { results.instagram = await postToInstagram(link, byNet.instagram.caption); }
+        try { results.instagram = await postToInstagram(article.image || link, byNet.instagram.caption); }
         catch (e: any) { results.instagram = { error: e.message }; }
         try { results.facebook = await postToFacebook(link, byNet.facebook.caption); }
         catch (e: any) { results.facebook = { error: e.message }; }
