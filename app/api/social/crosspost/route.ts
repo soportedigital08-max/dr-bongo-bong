@@ -11,10 +11,50 @@ export const dynamic = 'force-dynamic';
 const META_IG = process.env.META_IG_USER_ID;
 const META_FB = process.env.META_FB_PAGE_ID;
 const META_TOKEN = process.env.META_ACCESS_TOKEN;
+// Page Access Token dedicado (opcional). Si existe, se usa directo para publicar
+// en la fanpage sin derivarlo en runtime. Es la opcion mas robusta.
+const META_FB_PAGE_TOKEN = process.env.META_FB_PAGE_TOKEN;
 const TIKTOK_TOKEN = process.env.TIKTOK_ACCESS_TOKEN;
 const TIKTOK_OPEN_ID = process.env.TIKTOK_OPEN_ID;
 const YT_TOKEN = process.env.YOUTUBE_ACCESS_TOKEN;
 const SITE_URL = process.env.SITE_URL || 'https://drbongobong.com.ar';
+
+// ---------- HELPERS ----------
+
+interface ImageCheck {
+  ok: boolean;
+  contentType?: string;
+  status?: number;
+  reason?: string;
+}
+
+// IG Graph NO acepta posts de solo texto: exige imagen (JPEG recomendado) o video.
+// Antes de llamar a Meta validamos que la URL exista y sea realmente una imagen,
+// para evitar el error 9004 / 2207052 ("Only photo or video can be accepted...").
+async function validateImageUrl(url?: string): Promise<ImageCheck> {
+  if (!url) return { ok: false, reason: 'Sin imagen (featuredImage vacio)' };
+  if (!/^https?:\/\//i.test(url)) return { ok: false, reason: `URL invalida: ${url}` };
+  try {
+    // HEAD primero; algunos servers no lo soportan -> fallback GET con Range.
+    let res = await fetch(url, { method: 'HEAD', redirect: 'follow' });
+    if (!res.ok || !res.headers.get('content-type')) {
+      res = await fetch(url, { method: 'GET', headers: { Range: 'bytes=0-0' }, redirect: 'follow' });
+    }
+    const contentType = (res.headers.get('content-type') || '').toLowerCase();
+    if (!res.ok) {
+      return { ok: false, status: res.status, contentType, reason: `La URL respondio HTTP ${res.status} (no es una imagen accesible)` };
+    }
+    if (!contentType.startsWith('image/')) {
+      return { ok: false, status: res.status, contentType, reason: `Content-Type "${contentType}" no es image/* (probablemente una pagina 404/HTML)` };
+    }
+    if (contentType.includes('svg')) {
+      return { ok: false, status: res.status, contentType, reason: 'IG no acepta SVG; usar JPEG o PNG' };
+    }
+    return { ok: true, status: res.status, contentType };
+  } catch (e: any) {
+    return { ok: false, reason: `No se pudo verificar la imagen: ${e?.message || e}` };
+  }
+}
 
 // ---------- META (IG + FB) ----------
 async function postToInstagram(imageUrl: string, caption: string) {
@@ -31,19 +71,39 @@ async function postToInstagram(imageUrl: string, caption: string) {
   return await p.json();
 }
 
-async function postToFacebook(link: string, caption: string) {
-  // Meta exige un page-scoped token para publicar en la pagina.
-  // Lo derivamos del system-user token en runtime (sin var extra en Cpanel).
+// Devuelve el Page Access Token a usar para publicar en la fanpage.
+// Prioridad:
+//   1) META_FB_PAGE_TOKEN (env var dedicada, lo mas robusto).
+//   2) Derivarlo del system-user token: GET /{PAGE_ID}?fields=access_token.
+//      IMPORTANTE: esto SOLO funciona si el System User tiene la pagina asignada
+//      como activo con control total en Business Manager (tarea MANAGE).
+//      Si Meta devuelve (#200), falta esa asignacion (ver docs/META-FB-SETUP).
+async function getPageToken(): Promise<string> {
+  if (META_FB_PAGE_TOKEN) return META_FB_PAGE_TOKEN;
   const tokRes = await fetch(
     `https://graph.facebook.com/v21.0/${META_FB}?fields=access_token&access_token=${META_TOKEN}`
   );
   const tokJson = await tokRes.json();
-  const pageToken = tokJson.access_token || META_TOKEN;
+  if (tokJson?.access_token) return tokJson.access_token as string;
+  throw new Error(
+    'No se pudo obtener un Page Access Token. El System User no tiene la pagina asignada con control total en Business Manager, ' +
+    'o falta definir META_FB_PAGE_TOKEN en cPanel. Detalle Meta: ' + JSON.stringify(tokJson?.error || tokJson)
+  );
+}
+
+async function postToFacebook(link: string, caption: string) {
+  const pageToken = await getPageToken();
   const r = await fetch(
     `https://graph.facebook.com/v21.0/${META_FB}/feed?link=${encodeURIComponent(link)}&message=${encodeURIComponent(caption)}&access_token=${pageToken}`,
     { method: 'POST' }
   );
-  return await r.json();
+  const rj = await r.json();
+  if (rj?.error) {
+    throw new Error(
+      `FB feed: ${JSON.stringify(rj.error)}${rj.error?.code === 200 ? ' | Hint: el token usado no es un Page Token valido; asignar la pagina al System User (control total) o setear META_FB_PAGE_TOKEN.' : ''}`
+    );
+  }
+  return rj;
 }
 
 // ---------- TIKTOK (Direct Post API, stub token-ready) ----------
@@ -90,11 +150,35 @@ export async function POST(req: Request) {
     // IG + FB (Meta)
     if (META_IG && META_FB && META_TOKEN) {
       if (dryRun) {
-        results.instagram = { wouldPost: true, caption: byNet.instagram.caption, to: META_IG };
-        results.facebook = { wouldPost: true, caption: byNet.facebook.caption, to: META_FB };
+        const imgCheck = await validateImageUrl(article.image);
+        results.instagram = {
+          wouldPost: imgCheck.ok,
+          caption: byNet.instagram.caption,
+          to: META_IG,
+          image: article.image || null,
+          imageCheck: imgCheck,
+          ...(imgCheck.ok ? {} : { warning: `IG se omitiria: ${imgCheck.reason}` }),
+        };
+        results.facebook = {
+          wouldPost: true,
+          caption: byNet.facebook.caption,
+          to: META_FB,
+          pageTokenSource: META_FB_PAGE_TOKEN ? 'env:META_FB_PAGE_TOKEN' : 'derived-from-system-user',
+        };
       } else {
-        try { results.instagram = await postToInstagram(article.image || link, byNet.instagram.caption); }
-        catch (e: any) { results.instagram = { error: e.message }; }
+        // IG: exige imagen real (image/*). Si no hay imagen valida, se OMITE con warning (no crashea).
+        const imgCheck = await validateImageUrl(article.image);
+        if (imgCheck.ok && article.image) {
+          try { results.instagram = await postToInstagram(article.image, byNet.instagram.caption); }
+          catch (e: any) { results.instagram = { error: e.message }; }
+        } else {
+          results.instagram = {
+            skipped: true,
+            warning: `Instagram omitido: ${imgCheck.reason}. IG Graph API exige imagen (JPEG/PNG) o video; no existe el post de solo texto.`,
+            imageChecked: article.image || null,
+            imageCheck: imgCheck,
+          };
+        }
         try { results.facebook = await postToFacebook(link, byNet.facebook.caption); }
         catch (e: any) { results.facebook = { error: e.message }; }
       }
