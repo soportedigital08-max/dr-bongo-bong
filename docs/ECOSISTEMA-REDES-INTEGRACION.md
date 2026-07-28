@@ -89,7 +89,52 @@ Mismas env vars del doc §5. El código ya tiene los stubs token-ready; al setea
 cross-post las usa. El video (reel/short) requiere subir el archivo generado por el kit
 (pendiente de implementar la subida de bytes).
 
-## 8) PENDIENTE
+## 9) RUNBOOK VERIFICADO — META (lo que SÍ funciona, 2026-07-28)
+Evitar repetir las 4 horas. Resumen del flujo que quedó funcionando:
+
+### Tokens Meta (respeta esto)
+- App Meta: `Dr Bongo Bong` (APP_ID `976067382151868`).
+- Usuario del Sistema (System User) `drbongobong-bot` en Business Suite, con la
+  **página de FB y la cuenta IG asignadas como ACTIVOS del bot** (no solo a nivel portafolio).
+- `META_ACCESS_TOKEN` = System User token (para IG).
+- `META_FB_PAGE_TOKEN` = Page Access Token derivado del System User token:
+  `curl "https://graph.facebook.com/v21.0/{PAGE_ID}?fields=access_token&access_token={SYSTEM_TOKEN}"`
+  → el `access_token` resultante va a `META_FB_PAGE_TOKEN`. NO expira (System User en BM).
+- `META_IG_USER_ID` = `17841405980710349` (id de la cuenta business de IG).
+- `META_FB_PAGE_ID` = `550750658416657`.
+
+### Variables en cPanel (Node.js App Manager → Environment Variables)
+`META_ACCESS_TOKEN`, `META_IG_USER_ID`, `META_FB_PAGE_ID`, `META_FB_PAGE_TOKEN`, `PUBLISH_KEY`.
+⚠️ Después de agregar/modificar env vars → **REINICIAR** la app (si no, el standalone no las ve).
+
+### Comportamiento del código (route.ts, commit 045f739+)
+- IG: valida que `featuredImage` sea una URL de imagen REAL (content-type image/*, no 404).
+  Si no hay imagen válida, **OMITE el post a IG con warning** (no crashea). Usar SIEMPRE
+  una imagen que exista en el sitio (ej. `https://drbongobong.com.ar/bonguito-logo.png`).
+  `og.png` NO existe → 404 → IG se omite.
+- FB: usa `META_FB_PAGE_TOKEN` si existe; sino lo deriva del System User token.
+
+### Prueba (Git Bash en PC, NO en el server)
+- DryRun: `bash test-crosspost.sh` → espera `configured:{instagram:true,facebook:true}`
+  y FB `pageTokenSource:"env:META_FB_PAGE_TOKEN"`.
+- Real: `bash test-crosspost-real.sh` (edición: poner PUBLISH_KEY real; featuredImage = imagen válida).
+  Publica de verdad en IG + FB.
+
+### Errores ya resueltos (no volver a dar vueltas)
+- `Only photo or video can be accepted` (IG 9004): la imagen no existe/NO es imagen. Usar URL de imagen real del sitio.
+- `(#200) requires pages_read_engagement and pages_manage_posts` (FB): el token no es page token.
+  Solución: asignar la PÁGINA como activo del bot y usar `META_FB_PAGE_TOKEN`.
+- `configured:false`: falta alguna env var de Meta en cPanel, o no reiniciaste la app.
+- `Unauthorized`: el `x-api-key` del curl no coincide con `PUBLISH_KEY` (o está tapado con `...`).
+
+### NO HACER (perdió horas)
+- NO correr `test-crosspost.sh` en la Terminal de cPanel (el script está en la PC).
+- NO usar `og.png` como imagen (da 404).
+- NO dejar el `x-api-key` con `...` (placeholder) en el script; poner la key real de CPanel.
+- NO olvidar REINICIAR la app tras cambiar env vars.
+- NO subir el `.tar.gz` y no descomprimirlo en el server (el server queda con `.next` viejo).
+
+## 10) PENDIENTE
 - [ ] TikTok + YouTube tokens (mismo esquema).
 - [ ] Subida de video (reel/short) por bytes al cross-post.
 - [ ] Canal de aprobación (email/WA) antes del cross-post automático (doc madre §8).
